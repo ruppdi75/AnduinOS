@@ -16,132 +16,41 @@ export INTERACTIVE="-y"
 #==========================
 
 # Set the language environment. Can be: en_US, en_GB, zh_CN, zh_TW, zh_HK, ja_JP, ko_KR, vi_VN, th_TH, de_DE, fr_FR, es_ES, ru_RU, it_IT, pt_BR, pt_PT, ar_SA, nl_NL, sv_SE, pl_PL, tr_TR
-export LANG_MODE="en_US"
+export LANG_MODE="de_AT"
 # Set the language pack code. Can be: zh, en, ja, ko, vi, th, de, fr, es, ru, it, pt, pt, ar, nl, sv, pl, tr
-export LANG_PACK_CODE="en"
+export LANG_PACK_CODE="de"
 
 export LC_ALL=$LANG_MODE.UTF-8
 export LC_CTYPE=$LANG_MODE.UTF-8
 export LC_TIME=$LANG_MODE.UTF-8
 export LC_NAME=$LANG_MODE.UTF-8
-export LC_ADDRESS=$LANG_MODE.UTF-8
-export LC_TELEPHONE=$LANG_MODE.UTF-8
-export LC_MEASUREMENT=$LANG_MODE.UTF-8
-export LC_IDENTIFICATION=$LANG_MODE.UTF-8
-export LC_NUMERIC=$LANG_MODE.UTF-8
-export LC_PAPER=$LANG_MODE.UTF-8
-export LC_MONETARY=$LANG_MODE.UTF-8
 export LANG=$LANG_MODE.UTF-8
 export LANGUAGE=$LANG_MODE:$LANG_PACK_CODE
-
-# language-pack-zh-hans   language-pack-zh-hans-base language-pack-gnome-zh-hans \
-# language-pack-zh-hant   language-pack-zh-hant-base language-pack-gnome-zh-hant \
-# language-pack-en        language-pack-en-base      language-pack-gnome-en \
 export LANGUAGE_PACKS="language-pack-$LANG_PACK_CODE* language-pack-gnome-$LANG_PACK_CODE*"
-
-# Continue with the rest of the script
 echo "Language environment has been set to $LANG_MODE"
 
 #==========================
 # OS system information
 #==========================
-# Can be: jammy noble oracular plucky questing
-export TARGET_UBUNTU_VERSION="questing"
-
-# See https://docs.anduinos.com/Install/Select-Best-Apt-Source.html
-export BUILD_UBUNTU_MIRROR="http://mirror.aiursoft.cn/ubuntu/"
-
-# Must be lowercase without special characters and spaces
-export TARGET_NAME="anduinos"
-
-# Business name. No special characters or spaces
-export TARGET_BUSINESS_NAME="AnduinOS"
-
-# Version number. Must be in the format of x.y.z
-export TARGET_BUILD_VERSION="1.4.0"
-
-# Fork version. Must be in the format of x.y
+export TARGET_UBUNTU_VERSION="noble"
+export BUILD_UBUNTU_MIRROR="http://at.archive.ubuntu.com/ubuntu/"
+export TARGET_NAME="lumios"
+export TARGET_BUSINESS_NAME="LumiOS"
+export TARGET_BUILD_VERSION="1.0.0"
 export TARGET_BUILD_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
 #===========================
 # Installer customization
 #===========================
-# Packages will be uninstalled during the installation process
-export TARGET_PACKAGE_REMOVE="
-    ubiquity \
-    casper \
-    discover \
-    laptop-detect \
-    os-prober \
-"
+export TARGET_PACKAGE_REMOVE="ubiquity casper discover laptop-detect os-prober"
 
 #============================
 # Store experience customization
 #============================
-# How to install the store. Can be "none", "web", "flatpak", "snap"
-# none:     no app store
-# web:      use a web shortcut to browse the app store
-# flatpak:  use gnome software to browse the app store, and install flatpak as plugin
-# snap:     use gnome software to browse the app store, and install snap as plugin
 export STORE_PROVIDER="flatpak"
-
-# The mirror URL for flathub. Can be: "https://mirror.sjtu.edu.cn/flathub"
 export FLATHUB_MIRROR=""
-if [[ "$FLATHUB_MIRROR" != "" && "$STORE_PROVIDER" != "flatpak" ]]; then
-    echo "Error: FLATHUB_MIRROR is set, but STORE_PROVIDER is not set to flatpak"
-    exit 1
-fi
-
-# The gpg file for the flathub mirror. Can be: "https://mirror.sjtu.edu.cn/flathub/flathub.gpg"
 export FLATHUB_GPG=""
-if [[ "$FLATHUB_GPG" != "" && "$FLATHUB_MIRROR" == "" ]]; then
-    echo "Error: FLATHUB_GPG is set, but FLATHUB_MIRROR is not set"
-    exit 1
-fi
 
-#============================
-# Browser configuration
-#============================
-# How to install Firefox. Can be: "none", "deb", "flatpak", "snap"
-# none:     no firefox
-# deb:      install firefox from PPA with apt
-# flatpak:  install firefox from flathub (Only available if STORE_PROVIDER is set to "flatpak")
-# snap:     install firefox from snap (Only available if STORE_PROVIDER is set to "snap")
-# TODO: Snap firefox seems to be broken. Investigation required.
-export FIREFOX_PROVIDER="none"
-if [[ "$FIREFOX_PROVIDER" == "flatpak" && "$STORE_PROVIDER" != "flatpak" ]]; then
-    echo "Error: FIREFOX_PROVIDER is set to flatpak, but STORE_PROVIDER is not set to flatpak"
-    exit 1
-fi
-if [[ "$FIREFOX_PROVIDER" == "snap" && "$STORE_PROVIDER" != "snap" ]]; then
-    echo "Error: FIREFOX_PROVIDER is set to snap, but STORE_PROVIDER is not set to snap"
-    exit 1
-fi
-
-# Whether to install firefox with apt. If set, it will be installed from the PPA. If empty, it will be installed from the default source
-# Must set FIREFOX_PROVIDER to "deb" before using this option
-# Sample: mirror-ppa.aiursoft.cn
-export BUILD_FIREFOX_MIRROR=""
-if [[ "$BUILD_FIREFOX_MIRROR" != "" && "$FIREFOX_PROVIDER" != "deb" ]]; then
-    echo "Error: BUILD_FIREFOX_MIRROR is set, but FIREFOX_PROVIDER is not set to deb"
-    exit 1
-fi
-
-# The Firefox mirror for live system. If set, it will be used to replace the default PPA mirror.
-# This must be set if FIREFOX_PROVIDER is set to "deb"
-# Default: ppa.launchpadcontent.net
-export LIVE_FIREFOX_MIRROR=""
-if [[ "$FIREFOX_PROVIDER" == "deb" && -z "$LIVE_FIREFOX_MIRROR" ]]; then
-    echo "Error: FIREFOX_PROVIDER is deb, but didn't set LIVE_FIREFOX_MIRROR"
-    exit 1
-fi
-
-# export FIREFOX_LOCALE_PACKAGE="firefox-locale-$LANG_PACK_CODE*"
-export FIREFOX_LOCALE_PACKAGE=""
-if [[ "$FIREFOX_LOCALE_PACKAGE" != "" && "$FIREFOX_PROVIDER" != "deb" ]]; then
-    echo "Error: FIREFOX_LOCALE_PACKAGE is set, but FIREFOX_PROVIDER is not set to deb"
-    exit 1
-fi
 #============================
 # Input method configuration
 #============================
@@ -185,7 +94,7 @@ export INSTALL_MODIFIED_SOFTWARE_PROPERTIES_GTK="true"
 
 # The timezone for the new OS being built (In chroot environment)
 # To view available options, run: `ls /usr/share/zoneinfo/`
-export TIMEZONE="America/Los_Angeles"
+export TIMEZONE="Europe/Vienna"
 
 #============================
 # Weather plugin configuration

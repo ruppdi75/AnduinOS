@@ -29,6 +29,7 @@ function clean() {
     judge "Clean up image"
     sudo rm -f $TARGET_NAME.iso || true
     judge "Clean up iso"
+
 }
 
 function setup_host() {
@@ -82,6 +83,7 @@ function mount_folers() {
     sudo cp -r $SCRIPT_DIR/mods new_building_os/root/mods
     sudo cp ./args.sh   new_building_os/root/mods/args.sh
     sudo cp ./shared.sh new_building_os/root/mods/shared.sh
+
 }
 
 function run_chroot() {
@@ -337,6 +339,8 @@ function umount_on_exit() {
     judge "Umount before exit"
 }
 
+
+
 # =============   main  ================
 cd $SCRIPT_DIR
 bind_signal
@@ -345,6 +349,10 @@ setup_host
 download_base_system
 mount_folers
 run_chroot
+
+    print_info "Waiting for 10 seconds to ensure all chroot processes have terminated..."
+    sleep 10
+
 umount_folers
 build_iso
 echo "$0 - Initial build is done!"

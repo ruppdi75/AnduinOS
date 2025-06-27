@@ -15,6 +15,8 @@ apt install $INTERACTIVE \
     cpio \
     crash \
     cron \
+    curl \
+    gnupg \
     debconf-i18n \
     dmidecode \
     dosfstools \
@@ -94,7 +96,7 @@ apt install $INTERACTIVE \
     gettext \
     cracklib-runtime \
     libfuse2t64 \
-    libfuse3-4 \
+    libfuse3-3 \
     libopengl0 \
     initramfs-tools \
     --no-install-recommends
