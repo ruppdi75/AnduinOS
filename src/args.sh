@@ -27,9 +27,9 @@ export INTERACTIVE="-y"
 #==========================
 
 # Set the language environment. Can be: en_US, en_GB, de_AT, de_DE, zh_CN, zh_TW, zh_HK, ja_JP, ko_KR, vi_VN, th_TH, fr_FR, es_ES, ru_RU, it_IT, pt_BR, pt_PT, ar_SA, nl_NL, sv_SE, pl_PL, tr_TR
-export LANG_MODE="en_US"
+export LANG_MODE="de_AT"
 # Set the language pack code. Can be: zh, en, ja, ko, vi, th, de, fr, es, ru, it, pt, pt, ar, nl, sv, pl, tr
-export LANG_PACK_CODE="en"
+export LANG_PACK_CODE="de"
 
 export LC_ALL=$LANG_MODE.UTF-8
 export LC_CTYPE=$LANG_MODE.UTF-8
@@ -59,7 +59,7 @@ export TARGET_PACKAGE_REMOVE="gnome-terminal gedit ubiquity casper discover lapt
 # Store experience customization
 #============================
 export STORE_PROVIDER="flatpak"
-export FLATHUB_MIRROR=""
+export FLATHUB_MIRROR="https://mirror.selfnet.de/flathub/"
 export FLATHUB_GPG=""
 
 #============================
@@ -89,7 +89,7 @@ fi
 # * [('xkb', 'us'), ('ibus', 'rime')]
 # * [('xkb', 'us'), ('ibus', 'chewing')]
 # * [('xkb', 'us'), ('xkb', 'fr')]
-export CONFIG_INPUT_METHOD="[('xkb', 'us')]"
+export CONFIG_INPUT_METHOD="[('xkb', 'us'), ('xkb', 'at')]"
 
 
 #============================
@@ -105,17 +105,17 @@ export INSTALL_MODIFIED_SOFTWARE_PROPERTIES_GTK="true"
 
 # The timezone for the new OS being built (In chroot environment)
 # To view available options, run: `ls /usr/share/zoneinfo/`
-export TIMEZONE="America/Los_Angeles"
+export TIMEZONE="Europe/Vienna"
 
 #============================
 # Weather plugin configuration
 #============================
-export CONFIG_WEATHER_LOCATION="[(uint32 0, 'San Francisco, California, United States', uint32 0, '37.7749295,-122.4194155')]"
+export CONFIG_WEATHER_LOCATION="[(uint32 0, 'Wien, Österreich', uint32 0, '48.208174,16.373819')]"
 
 #============================
 # Live system configuration
 #============================
-export LIVE_UBUNTU_MIRROR="http://archive.ubuntu.com/ubuntu/"
+export LIVE_UBUNTU_MIRROR="http://at.archive.ubuntu.com/ubuntu/"
 
 #============================
 # System apps configuration
