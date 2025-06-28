@@ -46,15 +46,9 @@ packages=(
 )
 
 for pkg in "${packages[@]}"; do
-    if dpkg -l "$pkg" 2>/dev/null | grep -q '^ii'; then
-        print_warn "Error: package '$pkg' is installed." >&2
-
-        if [[ $EXIT_IF_UNNECESSARY_PACKAGE_FOUND -eq 1 ]]; then
-            print_error "Unnecessary package found: $pkg"
-            exit 1
-        fi
-
-        apt autoremove -y --purge "$pkg"
-        judge "Purge package $pkg"
+    # Use dpkg-query to reliably check for installed packages, including wildcards.
+    if dpkg-query -W -f='${Status}' "$pkg" 2>/dev/null | grep -q "ok installed"; then
+        print_warn "Unnecessary package '$pkg' found. Purging it now..."
+        apt-get purge -y "$pkg"
     fi
 done
