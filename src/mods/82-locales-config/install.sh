@@ -3,7 +3,13 @@ set -o pipefail         # exit on pipeline error
 set -u                  # treat unset variable as error
 
 print_ok "Configuring locales..."
-dpkg-reconfigure locales
+# Ensure the locale is available before we try to use it.
+# First, add the desired locale to /etc/locale.gen.
+# The LANG_MODE variable (e.g., de_AT) is inherited from the build environment.
+echo "$LANG_MODE.UTF-8 UTF-8" >> /etc/locale.gen
+
+# Then, run locale-gen to generate it.
+locale-gen
 judge "Configure locales"
 
 print_ok "Configuring locales to $LANG..."
