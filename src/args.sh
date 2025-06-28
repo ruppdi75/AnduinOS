@@ -1,5 +1,16 @@
 #!/bin/bash
 
+# ==============================================================================
+#                 !!! IMPORTANT NOTE ON CONFIGURATION !!!
+#
+# The values in this file are DEFAULT values and will be DYNAMICALLY
+# OVERWRITTEN by the build script (build_all.sh) using the configurations
+# from the JSON files in the ../config/ directory for each language build.
+#
+# Do not edit these values directly to change a specific language build.
+# Instead, modify the corresponding JSON file in the ../config/ directory.
+# ==============================================================================
+
 #==========================
 # Builder Environment Variables
 #==========================
@@ -15,7 +26,7 @@ export INTERACTIVE="-y"
 # Language Information
 #==========================
 
-# Set the language environment. Can be: en_US, en_GB, zh_CN, zh_TW, zh_HK, ja_JP, ko_KR, vi_VN, th_TH, de_DE, fr_FR, es_ES, ru_RU, it_IT, pt_BR, pt_PT, ar_SA, nl_NL, sv_SE, pl_PL, tr_TR
+# Set the language environment. Can be: en_US, en_GB, de_AT, de_DE, zh_CN, zh_TW, zh_HK, ja_JP, ko_KR, vi_VN, th_TH, fr_FR, es_ES, ru_RU, it_IT, pt_BR, pt_PT, ar_SA, nl_NL, sv_SE, pl_PL, tr_TR
 export LANG_MODE="en_US"
 # Set the language pack code. Can be: zh, en, ja, ko, vi, th, de, fr, es, ru, it, pt, pt, ar, nl, sv, pl, tr
 export LANG_PACK_CODE="en"
@@ -42,7 +53,7 @@ export TARGET_BUILD_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 #===========================
 # Installer customization
 #===========================
-export TARGET_PACKAGE_REMOVE="ubiquity casper discover laptop-detect os-prober"
+export TARGET_PACKAGE_REMOVE="gnome-terminal gedit ubiquity casper discover laptop-detect os-prober"
 
 #============================
 # Store experience customization
