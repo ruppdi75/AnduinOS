@@ -13,6 +13,19 @@
         "flathub_gpg": ""
     },
     {
+        "lang_mode": "de_AT",
+        "lang_pack_code": "de",
+        "input_method_install": "",
+        "config_ibus_rime": "false",
+        "timezone": "Europe/Vienna",
+        "config_weather_location": "[(uint32 0, 'Wien, Österreich', uint32 0, '48.208174,16.373819')]",
+        "config_input_method": "[('xkb', 'us'), ('xkb', 'at')]",
+        "live_ubuntu_mirror": "http://ftp.tu-graz.ac.at/mirror/ubuntu/",
+        "live_firefox_mirror": "ppa.launchpadcontent.net",
+        "flathub_mirror": "",
+        "flathub_gpg": ""
+    },
+    {
         "lang_mode": "zh_CN",
         "lang_pack_code": "zh",
         "input_method_install": "ibus-rime",

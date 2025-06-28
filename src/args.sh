@@ -16,9 +16,9 @@ export INTERACTIVE="-y"
 #==========================
 
 # Set the language environment. Can be: en_US, en_GB, zh_CN, zh_TW, zh_HK, ja_JP, ko_KR, vi_VN, th_TH, de_DE, fr_FR, es_ES, ru_RU, it_IT, pt_BR, pt_PT, ar_SA, nl_NL, sv_SE, pl_PL, tr_TR
-export LANG_MODE="de_AT"
+export LANG_MODE="en_US"
 # Set the language pack code. Can be: zh, en, ja, ko, vi, th, de, fr, es, ru, it, pt, pt, ar, nl, sv, pl, tr
-export LANG_PACK_CODE="de"
+export LANG_PACK_CODE="en"
 
 export LC_ALL=$LANG_MODE.UTF-8
 export LC_CTYPE=$LANG_MODE.UTF-8
@@ -94,7 +94,7 @@ export INSTALL_MODIFIED_SOFTWARE_PROPERTIES_GTK="true"
 
 # The timezone for the new OS being built (In chroot environment)
 # To view available options, run: `ls /usr/share/zoneinfo/`
-export TIMEZONE="Europe/Vienna"
+export TIMEZONE="America/Los_Angeles"
 
 #============================
 # Weather plugin configuration
@@ -147,7 +147,16 @@ export DEFAULT_APPS="
     gnome-browser-connector \
     gnome-control-center-faces \
     gnome-startup-applications \
-    policykit-desktop-privileges
+    policykit-desktop-privileges \
+    xserver-xorg-input-all \
+    xorg \
+    xserver-xorg-legacy \
+    xserver-xorg-video-intel \
+    xserver-xorg-video-qxl \
+    libpam-gnome-keyring \
+    libfuse2t64 \
+    libfuse3-3 \
+    libopengl0
 "
 
 export DEFAULT_CLI_TOOLS="
