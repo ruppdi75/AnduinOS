@@ -91,7 +91,7 @@ function run_chroot() {
     print_warn "============================================"
     print_warn "   The following will run in chroot ENV!"
     print_warn "============================================"
-    sudo chroot new_building_os /usr/bin/env DEBIAN_FRONTEND=${DEBIAN_FRONTEND:-readline} /root/mods/install_all_mods.sh -
+    sudo chroot new_building_os /usr/bin/env DEBIAN_FRONTEND=${DEBIAN_FRONTEND:-readline} LC_ALL=$LANG_MODE.UTF-8 LANG=$LANG_MODE.UTF-8 LANGUAGE=$LANG_MODE:$LANG_PACK_CODE /root/mods/install_all_mods.sh -
     print_warn "============================================"
     print_warn "   chroot ENV execution completed!"
     print_warn "============================================"

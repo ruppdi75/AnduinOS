@@ -31,14 +31,7 @@ export LANG_MODE="de_AT"
 # Set the language pack code. Can be: zh, en, ja, ko, vi, th, de, fr, es, ru, it, pt, pt, ar, nl, sv, pl, tr
 export LANG_PACK_CODE="de"
 
-export LC_ALL=$LANG_MODE.UTF-8
-export LC_CTYPE=$LANG_MODE.UTF-8
-export LC_TIME=$LANG_MODE.UTF-8
-export LC_NAME=$LANG_MODE.UTF-8
-export LANG=$LANG_MODE.UTF-8
-export LANGUAGE=$LANG_MODE:$LANG_PACK_CODE
 export LANGUAGE_PACKS="language-pack-$LANG_PACK_CODE* language-pack-gnome-$LANG_PACK_CODE*"
-echo "Language environment has been set to $LANG_MODE"
 
 #==========================
 # OS system information

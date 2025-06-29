@@ -47,7 +47,7 @@ selected_languages=$(jq -c '.' "$CONFIG_JSON")
 # 3. Cleanup old files
 # -----------------------------------------------------------------------------
 echo "[INFO] Removing old distribution files..."
-sudo rm -rf ./src/dist/*
+# sudo rm -rf ./src/dist/*
 
 # -----------------------------------------------------------------------------
 # 4. Check for required files
